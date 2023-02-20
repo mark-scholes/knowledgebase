@@ -1,3 +1,5 @@
+declare module '@sanity/block-content-to-react';
+
 type Base = {
     _createdAt: string;
     _id: string;
@@ -15,6 +17,13 @@ interface Post extends Base {
     title: string;
     description: string;
 }
+
+interface Chat extends Base {
+    description: string;
+    chat: string;
+    author: Author;
+    chatTypes: ChatType[];
+  }
 
 interface Author extends Base {
     bio: Block[];
@@ -57,6 +66,11 @@ interface Category extends Base {
     description: string;
     title: string; 
 }
+
+interface ChatType extends Base {
+    title: string;
+    description: string;
+  }
 
 interface mainImage {
     _type: "image";

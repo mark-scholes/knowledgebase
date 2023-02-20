@@ -1,3 +1,4 @@
+"use clientS"
 import Link from "next/link";
 
 type HeaderProps = {
@@ -25,16 +26,16 @@ const Header:React.FC<HeaderProps> = () => {
                         <div id="dropdown" className="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
                             <ul className="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdown-button">
                             <li>
-                                <button type="button" className="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Mockups</button>
+                                <button type="button" className="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Chat Text</button>
                             </li>
                             <li>
-                                <button type="button" className="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Templates</button>
+                                <button type="button" className="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Huddle Notes</button>
                             </li>
                             <li>
-                                <button type="button" className="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Design</button>
+                                <button type="button" className="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Processes</button>
                             </li>
                             <li>
-                                <button type="button" className="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Logos</button>
+                                <button type="button" className="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">News</button>
                             </li>
                             </ul>
                         </div>
@@ -52,6 +53,7 @@ const Header:React.FC<HeaderProps> = () => {
                     <Link href="#" className="mr-5 hover:text-gray-900">News</Link>
                     <Link href="/processes" className="mr-5 hover:text-gray-900">Processes</Link>
                     <Link href="#" className="mr-5 hover:text-gray-900">Huddle Notes</Link>
+                    <Link href="/chatTexts" className="mr-5 hover:text-gray-900">Chat Text</Link>
                     </nav>
                     <button className="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0">Button
                     <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-4 h-4 ml-1" viewBox="0 0 24 24">

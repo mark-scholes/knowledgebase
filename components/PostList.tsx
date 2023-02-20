@@ -1,6 +1,5 @@
 import { PortableText } from "@portabletext/react";
 import ClientRouting from "./ClientRouting";
-
 type Props = {
     posts: Post[]
 };
@@ -17,7 +16,7 @@ function PostList ({ posts } : Props ) {
                   <div className="md:w-64 md:mb-0 mb-6 flex-shrink-0 flex flex-col">
                     <span className="font-semibold title-font text-gray-700">{post.description}</span>
                     <span className="mt-1 text-gray-500 text-sm">{
-                      new Date(post._createdAt).toLocaleDateString("en-GB", {
+                      new Date(post._updatedAt).toLocaleDateString("en-GB", {
                         day: "numeric",
                         month: "long",
                         year: "numeric"
@@ -26,7 +25,7 @@ function PostList ({ posts } : Props ) {
                   </div>
                   <div className="md:flex-grow">
                     <h2 className="text-2xl font-medium text-gray-900 title-font mb-2">{post.title}</h2>
-                    <p className="leading-relaxed line-clamp-2 "><PortableText value={post.body} /></p>
+                     <p className="leading-relaxed line-clamp-2 "><PortableText value={post.body} /></p> 
                     <p className="mt-4 text-gray-500 text-sm capitalize">{post.author.name}</p>
                     {/* {post.categories.map(category => (
                         <div key={category._id}>

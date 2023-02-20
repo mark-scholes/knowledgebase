@@ -1,6 +1,7 @@
 import { client } from "@/lib/sanity.client";
 import { groq } from "next-sanity";
-import { PortableText } from "@portabletext/react";
+import BlockContent from "@sanity/block-content-to-react"
+
 
 type Props = {
     params: {
@@ -12,12 +13,14 @@ async function Post({ params: {slug}}: Props){
     const query = groq` 
     *[_type=='post' && slug.current == $slug][0]
      {
+        title,
         ...,
         author->,
-        categories[]{...}
-        
+        categories[]{...}       
     }
     `
+
+    
     const post: Post = await client.fetch(query, {slug})
     console.log(post)
     return (
@@ -44,7 +47,12 @@ async function Post({ params: {slug}}: Props){
                     </div>
                     <div className="sm:w-2/3 sm:pl-8 sm:py-8 sm:border-l border-gray-200 sm:border-t-0 border-t mt-4 pt-4 sm:mt-0 text-center sm:text-left">
                     <h2 className="font-medium title-font mt-4 mb-4 text-gray-900 text-lg capitalize text-center sm:text-left">{post.title}</h2>
-                    <p className="leading-relaxed text-lg mb-4"><PortableText value={post.body} /></p>
+                    <p className="leading-relaxed text-lg mb-4"></p>
+                        <BlockContent 
+                        blocks={post.body}
+                        projectId="j7kxvx2o"
+                        dataset="production"
+                      />
                     <a className="text-indigo-500 inline-flex items-center">Learn More
                         <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-4 h-4 ml-2" viewBox="0 0 24 24">
                         <path d="M5 12h14M12 5l7 7-7 7"></path>

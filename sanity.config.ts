@@ -4,6 +4,7 @@ import {visionTool} from '@sanity/vision'
 import {schemaTypes} from './schemas'
 import { myTheme } from './theme';
 import StudioNav from './components/StudioNavbar';
+import { createDefaultDocumentNode } from './structure'
 
 const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID!;
 const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET!;
@@ -14,7 +15,9 @@ export default defineConfig({
   title: 'Knowledge_Base_Studio',
   projectId,
   dataset,
-  plugins: [deskTool(), visionTool()],
+  plugins: [deskTool({
+    defaultDocumentNode: createDefaultDocumentNode
+  }), visionTool()],
   schema: {
     types: schemaTypes,
   },
@@ -28,3 +31,4 @@ export default defineConfig({
 
   theme: myTheme
 })
+
