@@ -1,4 +1,4 @@
-import { PortableText } from "@portabletext/react";
+import { PortableText } from '@portabletext/react'
 import ClientRouting from "./ClientRouting";
 type Props = {
     posts: Post[]
@@ -25,7 +25,15 @@ function PostList ({ posts } : Props ) {
                   </div>
                   <div className="md:flex-grow">
                     <h2 className="text-2xl font-medium text-gray-900 title-font mb-2">{post.title}</h2>
-                     <p className="leading-relaxed line-clamp-2 "><PortableText value={post.body} /></p> 
+                     <p className="leading-relaxed line-clamp-2 ">
+                     <PortableText 
+                        value={post.body}
+                        components={{
+                          marks: {/* ... */},
+                          types: {/* ... */},
+                          list: {/* ... */},
+                        }} />
+                      </p> 
                     <p className="mt-4 text-gray-500 text-sm capitalize">{post.author.name}</p>
                     {/* {post.categories.map(category => (
                         <div key={category._id}>

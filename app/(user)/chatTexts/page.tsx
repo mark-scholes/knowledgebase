@@ -7,6 +7,7 @@ import PreviewSuspense  from "../../../components/PreviewSuspense"
 import PreviewPostList from "../../../components/PreviewPostList"
 import PostList from "@/components/PostList"
 import ChatMessages from "../../../components/ChatMessages"
+import { useStore } from "@/src/store"
 
 
 //move all of this under the Hustle notes section of the app. 
@@ -29,7 +30,7 @@ export default async function ChatText () {
     
     const chats = await client.fetch(query)
     return (
-            <ChatMessages chats={chats}/>
+        <ChatMessages chats={chats}/>           
                       
     )
 }
