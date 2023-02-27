@@ -21,6 +21,8 @@ const query = groq`*[_type == "post" && defined(slug.current)]{
     categories[]{...} 
   } | order(_updatedAt desc)`
 
+ 
+
 export default async function HomePage () {
 
     if(previewData()){

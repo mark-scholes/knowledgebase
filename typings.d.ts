@@ -20,7 +20,7 @@ interface Post extends Base {
 
 interface Chat extends Base {
     description: string;
-    chat: string;
+    chat?: TypedObject | TypedObject[];
     author: Author;
     chatTypes: ChatType[];
   }

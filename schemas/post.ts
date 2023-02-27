@@ -38,6 +38,16 @@ export default defineType({
       options: {
         hotspot: true,
       },
+      fields: [
+        {
+          name: 'alt',
+          type: 'string',
+          title: 'Alt Text',
+          description: 'Alternative text for screen readers',
+          validation: (Rule) =>
+            Rule.required().error('Alt text is required').max(240),
+        },
+      ],
     }),
     defineField({
       name: 'categories',

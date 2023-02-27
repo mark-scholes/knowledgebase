@@ -1,6 +1,9 @@
-import { client } from "@/lib/sanity.client";
+import { client} from "@/lib/sanity.client";
 import { groq } from "next-sanity";
-import { PortableText } from '@portabletext/react'
+import { PortableText, PortableTextReactComponents } from '@portabletext/react'
+import Image from 'next/image'
+import { PortableTextComponents } from "@/components/PortableTextComponents";
+import { urlFor } from "@/lib/urlFor";
 
 type Props = {
     params: {
@@ -20,14 +23,17 @@ async function Post({ params: {slug}}: Props){
     `
     
     const post: Post = await client.fetch(query, {slug})
-    console.log(post)
+
     return (
+        
         <section className="text-gray-600 body-font">
             <div className="container px-5 py-24 mx-auto flex flex-col">
                 <div className="lg:w-4/6 mx-auto">
-                <div className="rounded-lg h-64 overflow-hidden">
-                     <img alt="content" className="object-cover object-center h-full w-full" src="https://dummyimage.com/1200x500" /> 
-                </div>
+                {post.mainImage && (
+                    <div className="rounded-lg h-64 overflow-hidden">
+                        <Image  className="object-cover object-center h-full w-full" src={urlFor(post.mainImage).url()} height={500} width={1200}  alt={post.mainImage.asset._type}/>
+                    </div>
+                )};                
                 <div className="flex flex-col sm:flex-row mt-10">
                     <div className="sm:w-1/3 text-center sm:pr-8 sm:py-8">
                     <div className="w-20 h-20 rounded-full inline-flex items-center justify-center bg-gray-200 text-gray-400">
@@ -38,7 +44,6 @@ async function Post({ params: {slug}}: Props){
                     </div>
                     <div className="flex flex-col items-center text-center justify-center">
                         <h2 className="font-medium title-font mt-4 text-gray-900 text-lg capitalize">{post.author.name}</h2>
-                        <div className="w-12 h-1 bg-indigo-500 rounded mt-2 mb-4"></div>
                         <p className="text-base">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quos, ducimus.</p>
                         
                     </div>
@@ -48,21 +53,14 @@ async function Post({ params: {slug}}: Props){
                     <p className="leading-relaxed text-lg mb-4"></p>
                     <PortableText 
                         value={post.body}
-                        components={{
-                          marks: {/* ... */},
-                          types: {/* ... */},
-                          list: {/* ... */},
-                        }} />
-                    <a className="text-indigo-500 inline-flex items-center">Learn More
-                        <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-4 h-4 ml-2" viewBox="0 0 24 24">
-                        <path d="M5 12h14M12 5l7 7-7 7"></path>
-                        </svg>
-                    </a>
+                        //all styles for the various portableText elements are configured in the PortableTextComponents                        
+                        components={PortableTextComponents as Partial<PortableTextReactComponents>}/>
+
                     </div>
                 </div>
                 </div>
             </div>
-</section>
+        </section>
     )
 }
 export default Post 

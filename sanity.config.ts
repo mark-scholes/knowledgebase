@@ -15,6 +15,10 @@ export default defineConfig({
   title: 'Knowledge_Base_Studio',
   projectId,
   dataset,
+  images: {
+    // Add your image configuration here
+    domains: ['cdn.sanity.io'],
+  },
   plugins: [deskTool({
     defaultDocumentNode: createDefaultDocumentNode
   }), visionTool()],

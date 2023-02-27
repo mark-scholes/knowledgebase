@@ -8,6 +8,7 @@ import PreviewPostList from "../../../components/PreviewPostList"
 import PostList from "@/components/PostList"
 import ChatMessages from "../../../components/ChatMessages"
 import { useStore } from "@/src/store"
+import ChatCategorySelector from "@/components/ChatCategorySelector"
 
 
 //move all of this under the Hustle notes section of the app. 
@@ -30,7 +31,11 @@ export default async function ChatText () {
     
     const chats = await client.fetch(query)
     return (
-        <ChatMessages chats={chats}/>           
+        <div className="flex-col">
+            <ChatCategorySelector />
+            <ChatMessages chats={chats}/> 
+        </div>
+                  
                       
     )
 }
