@@ -50,9 +50,9 @@ const Header:React.FC<HeaderProps> = () => {
                 </form>
                 <form className="flex">
                     <nav className="md:ml-auto flex flex-wrap items-center text-base justify-center">
-                    <Link href="#" className="mr-5 hover:text-gray-900">News</Link>
+                    <Link href="/updates" className="mr-5 hover:text-gray-900">News</Link>
                     <Link href="/processes" className="mr-5 hover:text-gray-900">Processes</Link>
-                    <Link href="#" className="mr-5 hover:text-gray-900">Huddle Notes</Link>
+                    <Link href="/updates" className="mr-5 hover:text-gray-900">Huddle Notes</Link>
                     <Link href="/chatTexts" className="mr-5 hover:text-gray-900">Chat Text</Link>
                     </nav>
                 </form>

@@ -5,10 +5,8 @@ import { groq } from "next-sanity"
 import { client } from "../lib/sanity.client"
 //temporary solution unitl next-sanity impliments support for client modules
 import PreviewSuspense  from "../components/PreviewSuspense"
-import PreviewPostList from "../components/PreviewPostList"
-import PostList from "@/components/PostList"
 import ChatMessages from "../components/ChatMessages"
-import { useStore } from "@/src/store"
+import PreviewChatMessages from "./PreviewChatMessages"
 
 const query = groq`*[_type=='chatMessage']{
     ...,
@@ -16,20 +14,17 @@ const query = groq`*[_type=='chatMessage']{
     chatType[]{...}
 } | order(publishedAt asc)`
 
-const categoryQuery = groq`
-    *[_type == "chatMessage" && references(*[_type == "chatType" && title == "First set of chatTypes"]._id) ]
-
-`    // if(previewData()){
-    //     return(
-    //             // <PreviewSuspense fallback= "Loading Preview">
-    //             //     <PreviewPostList query={query}/>   
-    //             // </PreviewSuspense>  
-    //             <div>Test</div>          
-    //     )
-    // }   
-
 const ChatPortal = async () => {
+    if(previewData()){
+        return(
+                <PreviewSuspense fallback= "Loading Preview">
+                    <PreviewChatMessages query={query}/>   
+                </PreviewSuspense>                          
+        )
+    } 
+
     const chats = await client.fetch(query)
+
     return (
         <div className="flex">
             <ChatCategorySelector />

@@ -11,6 +11,26 @@ type Props = {
     };
 };
 
+
+
+// export const revalidate = 30; // once in production static pages are revalidated every 30 seconds, so there will be no need to rebuild after we update a page. 
+
+// export async function generateStaticParams () {
+//     //generate static pages at buildtime to improve load times
+//     const query = groq`
+//     *[_type=='post']
+//     {
+//         slug
+//     }
+//     `;
+//     const slugs: Post[] = await client.fetch(query);
+//     const slugRoutes = slugs.map((slug) => slug.slug.current)
+
+//     return slugRoutes.map(slug => {
+//         slug: slug
+//     })
+// }
+
 async function Post({ params: {slug}}: Props){
     const query = groq` 
     *[_type=='post' && slug.current == $slug][0]
@@ -29,11 +49,11 @@ async function Post({ params: {slug}}: Props){
         <section className="text-gray-600 body-font">
             <div className="container px-5 py-24 mx-auto flex flex-col">
                 <div className="lg:w-4/6 mx-auto">
-                {post.mainImage && (
+                {post.mainImage?.asset != null ?  (
                     <div className="rounded-lg h-64 overflow-hidden">
-                        <Image  className="object-cover object-center h-full w-full" src={urlFor(post.mainImage).url()} height={500} width={1200}  alt={post.mainImage.asset._type}/>
+                        <Image  className="object-cover object-center h-full w-full" src={urlFor(post.mainImage)?.url()} height={500} width={1200}  alt={post.mainImage.asset?._type}/>
                     </div>
-                )};                
+                ): ("")}               
                 <div className="flex flex-col sm:flex-row mt-10">
                     <div className="sm:w-1/3 text-center sm:pr-8 sm:py-8">
                     <div className="w-20 h-20 rounded-full inline-flex items-center justify-center bg-gray-200 text-gray-400">
@@ -44,7 +64,7 @@ async function Post({ params: {slug}}: Props){
                     </div>
                     <div className="flex flex-col items-center text-center justify-center">
                         <h2 className="font-medium title-font mt-4 text-gray-900 text-lg capitalize">{post.author.name}</h2>
-                        <p className="text-base">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quos, ducimus.</p>
+                        <p className="text-base">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Qnuos, ducimus.</p>
                         
                     </div>
                     </div>
