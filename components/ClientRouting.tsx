@@ -1,16 +1,12 @@
-"use client"
-import Link from "next/link"
+import Link from "next/link";
 
-//this enables us to have client component functionality within server componenets
+type Props = {
+  children: React.ReactNode;
+  route: string;
+};
 
-function ClientRouting ({
-    children, route
-  }: {
-    children: React.ReactNode, route: string
-  }) {
-    return(
-        <Link href={route}>{children}</Link>
-    )
+function ClientRouting({ children, route }: Props) {
+  return <Link href={route}>{children}</Link>;
 }
 
-export default ClientRouting
+export default ClientRouting;

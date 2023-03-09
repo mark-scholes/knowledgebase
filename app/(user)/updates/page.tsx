@@ -4,7 +4,7 @@ import { groq } from "next-sanity"
 import { client } from "../../../lib/sanity.client"
 import type { SanityDocument } from "@sanity/client";
 //temporary solution unitl next-sanity impliments support for client modules
-import PreviewSuspense  from "../../../components/PreviewSuspense"
+import PreviewSuspense  from "@/components/PreviewSuspense"
 import PreviewPostList from "@/components/PreviewPostList"
 import PostList from "@/components/PostList"
 

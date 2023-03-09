@@ -15,5 +15,23 @@ export default defineType({
       title: 'Description',
       type: 'text',
     }),
+    defineField({
+      name: 'slug',
+      title: 'Slug',
+      type: 'slug',
+      options: {
+        source: 'title',
+        maxLength: 96,
+      },
+    }),
   ],
+  preview: {
+    select: {
+      title: 'title',
+    },
+    // prepare(selection) {
+    //   const {author} = selection
+    //   return {...selection, subtitle: author && `by ${author}`}
+    // },
+  },
 })

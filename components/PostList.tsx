@@ -14,7 +14,6 @@ function PostList ({ posts } : Props ) {
             <ClientRouting route={`/post/${post.slug.current}`} key={post._id}>
               <div className="py-8 flex flex-wrap md:flex-nowrap group cursor-pointer">
                   <div className="md:w-64 md:mb-0 mb-6 flex-shrink-0 flex flex-col">
-                    <span className="font-semibold title-font text-gray-700">{post.description}</span>
                     <span className="mt-1 text-gray-500 text-sm">{
                       new Date(post._updatedAt).toLocaleDateString("en-GB", {
                         day: "numeric",

@@ -69,6 +69,9 @@ interface Category extends Base {
 
 interface ChatType extends Base {
     title: string;
+    slug: {
+        current: string;
+      };
     description: string;
   }
 

@@ -3,6 +3,7 @@
   import { useState, Fragment, useEffect } from "react"
   import { Menu, Transition } from '@headlessui/react'
   import { ChevronDownIcon } from '@heroicons/react/20/solid'
+  import {useChatTypeStore} from 'src/store'
 
   type ChatCategorySelectorProps = {
       onChange?: (category: string) => void
@@ -11,24 +12,40 @@
     function classNames(...classes: string[]):string {
       return classes.filter(Boolean).join(' ')
     }
-
+  
+    
 
   const ChatCategorySelector = () => {
-      const [category, setCategory] = useState("")
-      const [categoryQuery, setCategoryQuery] = useState("");
+    const { chatType, setChatType } = useChatTypeStore();
+    
+      // const [category, setCategory] = useState("")
+      // const [categoryQuery, setCategoryQuery] = useState("");
 
-      useEffect(() => {
-        setCategoryQuery(
-          groq`*[_type == "chatMessage" && references(*[_type == "chatType" && title == "${category}"]._id) ]`
-        );
-      }, [category]);
+      // useEffect(() => {
+      //   //use effect that builds a new query in case I want to send of a new query when the category changes, rather than just filtering out everything other than the desired category. 
+      //   setCategoryQuery(
+      //     groq`*[_type == "chatMessage" && references(*[_type == "chatType" && title == "${category}"]._id) ]`
+      //   );
+      // }, [category]);
+
+      // useEffect(() => {
+
+      // }, [categoryQuery])
       
       const handleCategoryChange = (
         e: React.MouseEvent<HTMLButtonElement>
       ) => {
         const selectedCategory = e.currentTarget.textContent!.trim();
-        setCategory(selectedCategory);
+        // setCategory(selectedCategory);
+        console.log(selectedCategory);
+        setChatType(selectedCategory)
+        console.log('useEffect', chatType);
+        
       };
+
+      useEffect(( )=> {
+        console.log(`The chatType changed. It's now ${chatType}`)
+      }, [chatType])
 
   
     return (
@@ -51,6 +68,9 @@
         >
           <Menu.Items className="absolute z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none left-1/2 transform -translate-x-1/2 " >
             <div className="py-1">
+              {
+                //these should eventually be generated based on a list of categories provided by sanity rather than being hardcoded.
+              }
               <Menu.Item>{({ active }) => (
                 <button
                   onClick={(e) => handleCategoryChange(e)}
@@ -59,7 +79,7 @@
                     'block px-4 py-2 text-sm text-center w-full'
                   )}
                 >
-                  Chat Type 1
+                  First set of chatTypes
                 </button>
               )}
               </Menu.Item>
@@ -71,7 +91,7 @@
                     'block px-4 py-2 text-sm text-center w-full'
                   )}
                 >
-                  Chat Type 2
+                  Second set of chatTypes
                 </button>
               )}
               </Menu.Item>
@@ -84,7 +104,7 @@
                     'block px-4 py-2 text-sm text-center w-full'
                   )}
                 >
-                  Chat Type 3
+                  Third set of chatTypes
                 </button>
               )}
               </Menu.Item>
@@ -97,20 +117,7 @@
                     'block px-4 py-2 text-sm text-center w-full'
                   )}
                 >
-                  Chat Type 4
-                </button>
-              )}
-              </Menu.Item>
-              <Menu.Item>
-              {({ active }) => (
-                <button
-                  onClick={(e) => handleCategoryChange(e)}
-                  className={classNames(
-                    active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                    'block px-4 py-2 text-sm text-center w-full'
-                  )}
-                >
-                  Chat Type 5
+                  Forth set of chatTypes
                 </button>
               )}
               </Menu.Item>

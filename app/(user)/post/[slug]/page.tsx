@@ -13,7 +13,7 @@ type Props = {
 
 
 
-// export const revalidate = 30; // once in production static pages are revalidated every 30 seconds, so there will be no need to rebuild after we update a page. 
+export const revalidate = 30; // once in production static pages are revalidated every 30 seconds, so there will be no need to rebuild after we update a page. 
 
 // export async function generateStaticParams () {
 //     //generate static pages at buildtime to improve load times
